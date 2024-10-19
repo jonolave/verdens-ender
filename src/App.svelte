@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   let steps = [
-    { index: 0, width: "10%", text: "Bar is 10%" },
+    { index: 0, width: "10%", text: "Text 1" },
     { index: 1, width: "90%", text: "Bar is 90%" },
     { index: 2, width: "50%", text: "Bar is 50%" },
   ];
@@ -46,13 +46,17 @@
       <div class="bar-outer">
         <div class="bar-inner" style="width: {steps[activeIndex].width};"></div>
       </div>
+      <p>This is the sticky background</p>
+      <p>With textbox {activeIndex + 1}</p>
     </figure>
 
     <!-- Step text -->
     <article>
       {#each steps as step (step.index)}
-        <div class="step {activeIndex === step.index ? 'is-active' : ''}" data-index={step.index}>
-          <p>{step.text}</p>
+        <div class="step" data-index={step.index}>
+          <div class="textbox {activeIndex === step.index ? 'is-active' : ''}">
+            <p>{step.text}</p>
+          </div>
         </div>
       {/each}
     </article>
@@ -73,6 +77,7 @@
     background-color: #f8f9fa;
   }
 
+  /* Styling for sticky element */
   #scrolly-overlay {
     position: relative;
     padding: 2rem 0;
@@ -80,19 +85,19 @@
 
   .scrolly {
     position: relative;
-    max-width: 800px;
     margin: 0 auto;
   }
 
-  /* Sticky element for the progress bar */
   .sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 50%;
-    z-index: 10;
-    background-color: #f8f9fa;
-    padding: 2rem 0;
-    margin-bottom: 3rem;
+    width: 100%;
+    top: 0;
+    height: 100vh;
+    z-index: -10;
+    background-color: #ffcccccc;
+    margin: 0 0 3rem 0;
+    padding: 2rem 0 2rem 0;
   }
 
   /* Progress bar styling */
@@ -113,16 +118,20 @@
   /* Step element styling */
   .step {
     min-height: 70vh;
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background-color: #e9ecef;
-    transition: background-color 250ms ease-in-out;
-    border-radius: 10px;
-    border: 1px solid #dee2e6;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
-  .step.is-active {
+  .textbox {
+    background-color: white;
+    max-width: 300px;
+    margin: 0 auto;
+    color: black;
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  }
+
+  /* Add when active */
+  .textbox.is-active {
     background-color: #007bff;
     color: white;
   }
