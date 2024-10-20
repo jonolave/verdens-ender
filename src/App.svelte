@@ -1,13 +1,9 @@
 <script>
   import { onMount } from "svelte";
 
-  let steps = [
-    { index: 0, width: "10%", text: "Text 1" },
-    { index: 1, width: "90%", text: "Bar is 90%" },
-    { index: 2, width: "50%", text: "Bar is 50%" },
-  ];
-
+  // Variable to store the active step index
   let activeIndex = 0;
+
   let observer;
 
   function updateChart(index) {
@@ -19,14 +15,16 @@
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            // Get the index of the intersecting element
             const index = +entry.target.dataset.index;
             updateChart(index);
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 } // share of element needs to be visible
     );
 
+    // observe all 'step' elements
     document.querySelectorAll(".step").forEach((step) => {
       observer.observe(step);
     });
@@ -35,69 +33,56 @@
   });
 </script>
 
-<section id="scrolly-secion-one" class="scrolly-section">
-  <div class="scrolly">
-    <!-- Sticky graphic (progress bar) -->
-    <figure class="sticky">
-      <p>This is the sticky background</p>
-    </figure>
-
-    <!-- Step text -->
-    <article>
-      <div class="step">
-        <div class="textbox">
-          <p>Text box 1</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- Step text -->
-    <article>
-      <div class="step">
-        <div class="textbox">
-          <p>Text box 1</p>
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
-
 <section class="filler">
   <p>Scroll</p>
 </section>
 
-<section id="scrolly-secion-two">
+<section id="scrolly-secion-one" class="scrolly-section">
   <div class="scrolly">
     <!-- Sticky graphic (progress bar) -->
     <figure class="sticky">
-      <div class="bar-outer">
-        <div class="bar-inner" style="width: {steps[activeIndex].width};"></div>
-      </div>
-      <p>This is the sticky background</p>
-      <p>With textbox {activeIndex + 1}</p>
+      {#if activeIndex === 0}
+        <p>Background 1</p>
+      {:else if activeIndex === 1}
+        <p>Background 2</p>
+      {:else if activeIndex === 2}
+        <p>Background 3</p>
+      {/if}
     </figure>
 
     <!-- Step text -->
     <article>
-      {#each steps as step (step.index)}
-        <div class="step" data-index={step.index}>
-          <div class="textbox {activeIndex === step.index ? 'is-active' : ''}">
-            <p>{step.text}</p>
-          </div>
+      <div class="step" data-index="0">
+        <div class="textbox">
+          <p>Text box 1</p>
         </div>
-      {/each}
+      </div>
+    </article>
+
+    <!-- Step text -->
+    <article>
+      <div class="step" data-index="1">
+        <div class="textbox">
+          <p>Text box 2</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Step text -->
+    <article>
+      <div class="step" data-index="2">
+        <div class="textbox">
+          <p>Text box 3</p>
+        </div>
+      </div>
     </article>
   </div>
-</section>
-
-<section class="filler">
-  <p>End</p>
 </section>
 
 <style>
   /* General styling for first and last section */
   .filler {
-    min-height: 100vh;
+    min-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,11 +91,6 @@
 
   /* Styling for sticky section */
   .scrolly-section {
-    position: relative;
-    padding: 0;
-  }
-
-  #scrolly-secion-two {
     position: relative;
     padding: 0;
   }
@@ -134,21 +114,6 @@
     padding: 2rem 0 2rem 0;
   }
 
-  /* Progress bar styling */
-  .bar-outer {
-    width: 100%;
-    height: 5px;
-    background-color: #ddd;
-    position: relative;
-  }
-
-  .bar-inner {
-    height: 100%;
-    background-color: #007bff;
-    width: 0; /* This will be updated dynamically */
-    transition: width 250ms ease-in-out;
-  }
-
   /* Step element styling */
   .step {
     min-height: 70vh;
@@ -162,12 +127,6 @@
     border-radius: 10px;
     border: 1px solid #dee2e6;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Add when active */
-  .textbox.is-active {
-    background-color: #007bff;
-    color: white;
   }
 
   .step p {
@@ -184,10 +143,6 @@
   @media (max-width: 768px) {
     .step {
       min-height: 50vh;
-    }
-
-    .bar-outer {
-      height: 4px;
     }
   }
 </style>
