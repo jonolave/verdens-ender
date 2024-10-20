@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { fade } from 'svelte/transition';
+  import { fade } from "svelte/transition";
 
   // Variable to store the active step index
   let activeIndex = 0;
@@ -111,7 +111,7 @@
     <!-- Sticky graphic -->
     <figure class="sticky">
       <div class="sticky-background-two">
-        {#if activeIndex === 4}
+        {#if activeIndex === 4 || activeIndex === 3}
           <div style="display: flex; justify-content: space-between; width: 60%;" transition:fade>
             <img src="duck.png" alt="gul plastand" class="static-duck big" style="z-index: 2;" />
             <img src="duck.png" alt="gul plastand" class="static-duck big mirror-horizontal" style="z-index: 2;" />
@@ -122,19 +122,22 @@
             />
           </div>
         {:else if activeIndex === 5 || activeIndex === 6 || activeIndex === 7}
-          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;" transition:fade>
+          <div
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
+            transition:fade
+          >
             <div
               style="width: 100%; height: 3rem; position:relative; display: flex; justify-content: center; align-items: flex-end; gap: 1rem;"
             >
               {#if activeIndex === 6 || activeIndex === 7}
-                <img src="duck.png" alt="gul plastand" class="static-duck big" transition:fade/>
-                <img src="duck.png" alt="gul plastand" class="static-duck" transition:fade />
-                <img src="duck.png" alt="gul plastand" class="static-duck" transition:fade/>
+                <img src="duck.png" alt="gul plastand" class="static-duck big"  />
+                <img src="duck.png" alt="gul plastand" class="static-duck" />
+                <img src="duck.png" alt="gul plastand" class="static-duck"  />
               {/if}
             </div>
             <div style="height: 50vh; width: 100%;">
               {#if activeIndex === 5 || activeIndex === 6}
-              <img src="vise.png" alt="Noteark med vise" class="noteark" transition:fade/>
+                <img src="vise.png" alt="Noteark med vise" class="noteark" transition:fade />
               {/if}
             </div>
           </div>
@@ -185,7 +188,6 @@
   <!-- Text box 1 -->
   <article>
     <div class="step top-step" style="gap: 6rem" data-index="8">
-
       <div class="textbox">
         <p>Nei. Men så lenge ender er gode, er allting godt!</p>
       </div>
@@ -194,6 +196,9 @@
         <p style="font-size: 4rem;">🍗 🍗 🍗</p>
         <p>Dette er enden.</p>
       </div>
+      <p style="font-size: 1rem; opacity: 70%;">
+        Illustrasjon av andedam fra <a style="color: black; opacity: 70%;" href="www.freepik.com">www.freepik.com</a>
+      </p>
     </div>
   </article>
 </section>
@@ -270,6 +275,10 @@
     height: 1rem;
     margin-top: 0.25rem;
     animation: arrow-bounce 1s ease-in-out 0s infinite;
+    -webkit-animation: arrow-bounce 1s ease-in-out 0s infinite;
+    -ms-animation: arrow-bounce 1s ease-in-out 0s infinite;
+    -moz-animation: arrow-bounce 1s ease-in-out 0s infinite;
+    -o-animation: arrow-bounce 1s ease-in-out 0s infinite;
   }
 
   @keyframes arrow-bounce {
@@ -292,6 +301,18 @@
     animation:
       duck-crossing 5s linear 1s infinite,
       duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
+    -webkit-animation:
+      duck-crossing 5s linear 1s infinite,
+      duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
+    -ms-animation:
+      duck-crossing 5s linear 1s infinite,
+      duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
+    -moz-animation:
+      duck-crossing 5s linear 1s infinite,
+      duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
+    -o-animation:
+      duck-crossing 5s linear 1s infinite,
+      duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
   }
 
   .crossing-duck.second-duck {
@@ -302,6 +323,18 @@
   @media (min-width: 1024px) {
     .crossing-duck {
       animation:
+        duck-crossing 10s linear 1s infinite,
+        duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
+      -webkit-animation:
+        duck-crossing 10s linear 1s infinite,
+        duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
+      -ms-animation:
+        duck-crossing 10s linear 1s infinite,
+        duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
+      -moz-animation:
+        duck-crossing 10s linear 1s infinite,
+        duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
+      -o-animation:
         duck-crossing 10s linear 1s infinite,
         duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
     }
@@ -386,6 +419,10 @@
 
   .static-duck.mirror-horizontal {
     animation: duck-waggle-flipped 1s ease-in-out 0s infinite alternate-reverse;
+    -webkit-animation: duck-waggle-flipped 1s ease-in-out 0s infinite alternate-reverse;
+    -ms-animation: duck-waggle-flipped 1s ease-in-out 0s infinite alternate-reverse;
+    -moz-animation: duck-waggle-flipped 1s ease-in-out 0s infinite alternate-reverse;
+    -o-animation: duck-waggle-flipped 1s ease-in-out 0s infinite alternate-reverse;
   }
 
   @keyframes duck-waggle-flipped {
@@ -433,7 +470,7 @@
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .step {
-      min-height: 70vh;
+      min-height: 90vh;
     }
     .full-width-svg {
       object-position: 20% center;
