@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { fade } from 'svelte/transition';
 
   // Variable to store the active step index
   let activeIndex = 0;
@@ -34,11 +35,12 @@
   });
 </script>
 
+<!-- First section, no sticky -->
 <section class="top-section">
   <!-- Heading -->
   <article>
     <div class="step top-step" data-index="0">
-      <div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
         <h1 style="">
           <span style="font-size: 1.5rem; line-height: 1;">Det handler om å få</span>
           <br />
@@ -46,6 +48,8 @@
           <br />
           <span style="font-size: 1.5rem; line-height: 1.6;">til å møtes</span>
         </h1>
+        <p style="font-size: 1.2rem; margin-top: 5rem;">En scollehistorie av Jon Olav</p>
+        <img src="arrow-down.svg" alt="" class="arrow" />
       </div>
     </div>
   </article>
@@ -75,46 +79,123 @@
   </article>
 </section>
 
-<section id="scrolly-secion-one" class="scrolly-section">
+<!-- Sticky section 1 -->
+<section class="scrolly-section">
   <div class="scrolly">
     <!-- Sticky graphic -->
     <figure class="sticky">
-      {#if activeIndex === 0}
-        <p>Background 1</p>
-      {:else if activeIndex === 1}
-        <p>Background 2</p>
-      {:else if activeIndex === 2}
-        <p>Background 3</p>
-      {/if}
+      <div class="svg-container">
+        <img src="andedam.svg" alt="Et vann med ender ved siden av en stein" class="full-width-svg" />
+        <div class="overlay-content" style="display: flex; gap: 1rem;">
+          <img src="duck.png" alt="gul plastand" class="static-duck" />
+          <img src="duck.png" alt="gul plastand" class="static-duck" />
+        </div>
+      </div>
     </figure>
 
     <!-- Step text -->
     <article>
       <div class="step" data-index="3">
         <div class="textbox">
-          <p>Text box 1</p>
+          <p>I andedammen vår er det ingen ender på gjestfriheten</p>
+        </div>
+      </div>
+      <div style="height: 40vh;"></div>
+    </article>
+  </div>
+</section>
+
+<!-- Sticky section 2 -->
+<section class="scrolly-section">
+  <div class="scrolly">
+    <!-- Sticky graphic -->
+    <figure class="sticky">
+      <div class="sticky-background-two">
+        {#if activeIndex === 4}
+          <div style="display: flex; justify-content: space-between; width: 60%;" transition:fade>
+            <img src="duck.png" alt="gul plastand" class="static-duck big" style="z-index: 2;" />
+            <img src="duck.png" alt="gul plastand" class="static-duck big mirror-horizontal" style="z-index: 2;" />
+            <img
+              src="tau.svg"
+              alt="tau mellom ender"
+              style=" position: absolute; width: 60%; margin: auto; z-index: 0;"
+            />
+          </div>
+        {:else if activeIndex === 5 || activeIndex === 6 || activeIndex === 7}
+          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;" transition:fade>
+            <div
+              style="width: 100%; height: 3rem; position:relative; display: flex; justify-content: center; align-items: flex-end; gap: 1rem;"
+            >
+              {#if activeIndex === 6 || activeIndex === 7}
+                <img src="duck.png" alt="gul plastand" class="static-duck big" transition:fade/>
+                <img src="duck.png" alt="gul plastand" class="static-duck" transition:fade />
+                <img src="duck.png" alt="gul plastand" class="static-duck" transition:fade/>
+              {/if}
+            </div>
+            <div style="height: 50vh; width: 100%;">
+              {#if activeIndex === 5 || activeIndex === 6}
+              <img src="vise.png" alt="Noteark med vise" class="noteark" transition:fade/>
+              {/if}
+            </div>
+          </div>
+        {/if}
+      </div>
+    </figure>
+
+    <!-- Step text -->
+    <article>
+      <div class="step center-content" data-index="4">
+        <div class="textbox">
+          <p>Men en and i enden er tross alt bedre enn ti ender på taket</p>
         </div>
       </div>
     </article>
 
     <!-- Step text -->
     <article>
-      <div class="step" data-index="4">
+      <div class="step center-content" data-index="5">
         <div class="textbox">
-          <p>Text box 2</p>
+          <p>Er det ingen ender på denne visa?</p>
         </div>
       </div>
     </article>
 
     <!-- Step text -->
     <article>
-      <div class="step" data-index="5">
+      <div class="step center-content" data-index="6">
         <div class="textbox">
-          <p>Text box 3</p>
+          <p>Joda.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Step text -->
+    <article>
+      <div class="step center-content" data-index="7">
+        <div class="textbox">
+          <p>Men dette er da vel ikke verdens ender?</p>
         </div>
       </div>
     </article>
   </div>
+</section>
+
+<!-- Last section, no sticky -->
+<section class="footer">
+  <!-- Text box 1 -->
+  <article>
+    <div class="step top-step" style="gap: 6rem" data-index="8">
+
+      <div class="textbox">
+        <p>Nei. Men så lenge ender er gode, er allting godt!</p>
+      </div>
+
+      <div>
+        <p style="font-size: 4rem;">🍗 🍗 🍗</p>
+        <p>Dette er enden.</p>
+      </div>
+    </div>
+  </article>
 </section>
 
 <style>
@@ -123,6 +204,33 @@
   :root {
     --black-color: #120908;
     --yellow-color: #ffe431;
+  }
+
+  /* Styling for all steps */
+  .step {
+    min-height: 100vh;
+  }
+
+  .step.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .textbox {
+    background-color: var(--black-color);
+    padding: 1rem 2rem;
+    max-width: 300px;
+    margin: 0 auto;
+    color: var(--yellow-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .step p {
+    font-size: 1.5rem;
+    text-align: center;
   }
 
   /* Top section */
@@ -157,6 +265,25 @@
     color: var(--black-color);
   }
 
+  .arrow {
+    width: 2rem;
+    height: 1rem;
+    margin-top: 0.25rem;
+    animation: arrow-bounce 1s ease-in-out 0s infinite;
+  }
+
+  @keyframes arrow-bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(0.5rem);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   .crossing-duck {
     position: absolute;
     right: -5rem;
@@ -164,7 +291,7 @@
     height: auto;
     animation:
       duck-crossing 5s linear 1s infinite,
-      duck-waggle 1s ease-in-out infinite;
+      duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
   }
 
   .crossing-duck.second-duck {
@@ -176,13 +303,9 @@
     .crossing-duck {
       animation:
         duck-crossing 10s linear 1s infinite,
-        duck-waggle 1s ease-in-out infinite;
+        duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
     }
-
-
   }
-
-  
 
   @keyframes duck-crossing {
     0% {
@@ -194,24 +317,12 @@
   }
 
   @keyframes duck-waggle {
-    0%,
-    100% {
-      transform: rotate(0deg);
-    }
-    25% {
+    from {
       transform: rotate(-5deg);
     }
-    75% {
+    to {
       transform: rotate(5deg);
     }
-  }
-
-  .filler {
-    min-height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8f9fa;
   }
 
   /* Styling for sticky section */
@@ -234,40 +345,101 @@
     top: 0;
     height: 100vh;
     z-index: -10;
-    background-color: #ffcccccc;
-    margin: 0 0 3rem 0;
-    padding: 2rem 0 2rem 0;
+    margin: 0;
+    padding: 0;
   }
 
-  /* Step element styling */
-  .step {
-    min-height: 100vh;
+  .svg-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
   }
 
-  .textbox {
-    background-color: var(--black-color);
-    padding: 1rem 2rem;
-    max-width: 300px;
-    margin: 0 auto;
-    color: var(--yellow-color);
-    border-radius: 10px;
+  .full-width-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: object-position 0.3s ease-in-out;
+  }
+
+  .overlay-content {
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center content (optional) */
+    z-index: 1; /* Ensure content is on top */
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .static-duck {
+    width: 3rem;
+    height: auto;
+    animation: duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
+  }
+
+  .static-duck.big {
+    width: 5rem;
+  }
+
+  .static-duck.mirror-horizontal {
+    animation: duck-waggle-flipped 1s ease-in-out 0s infinite alternate-reverse;
+  }
+
+  @keyframes duck-waggle-flipped {
+    from {
+      transform: scaleX(-1) rotate(-5deg);
+    }
+    to {
+      transform: scaleX(-1) rotate(5deg);
+    }
+  }
+
+  /* After SVG */
+
+  .sticky-background-two {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(251, 227, 67);
+    background: linear-gradient(180deg, #8ab041 0%, #bbb735 100%);
+  }
+
+  .noteark {
+    height: 50vh;
+    width: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0.2rem;
   }
 
-  .step p {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  /* Ensure there's enough space between elements */
+  /* ... */
   article {
     padding: 0;
+  }
+
+  .footer {
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #bbb735;
+    background: linear-gradient(180deg, #bbb735 0%, #feb902 100%);
   }
 
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .step {
       min-height: 70vh;
+    }
+    .full-width-svg {
+      object-position: 20% center;
+    }
+    .overlay-content {
+      left: 80%;
     }
   }
 </style>
