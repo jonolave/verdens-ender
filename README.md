@@ -1,14 +1,17 @@
-# Verdens ender
+# Verdens ender - ei scrollehistorie
+
+Sjekk den ut her:
+https://verdens-ender.vercel.app/
 
 
-Using position sticky Inspired by
+## Details
+
+Using position sticky inspired by
 https://pudding.cool/process/scrollytelling-sticky/
-
 
 Install and run:
 `npm install`
 `npm run dev`
-
 
 
 # Svelte + Vite
