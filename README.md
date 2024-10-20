@@ -1,6 +1,10 @@
 # Verdens ender
 
 
+Using position sticky Inspired by
+https://pudding.cool/process/scrollytelling-sticky/
+
+
 Install and run:
 `npm install`
 `npm run dev`

@@ -35,11 +35,38 @@
   });
 </script>
 
+<section id="scrolly-secion-one" class="scrolly-section">
+  <div class="scrolly">
+    <!-- Sticky graphic (progress bar) -->
+    <figure class="sticky">
+      <p>This is the sticky background</p>
+    </figure>
+
+    <!-- Step text -->
+    <article>
+      <div class="step">
+        <div class="textbox">
+          <p>Text box 1</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Step text -->
+    <article>
+      <div class="step">
+        <div class="textbox">
+          <p>Text box 1</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <section class="filler">
   <p>Scroll</p>
 </section>
 
-<section id="scrolly-overlay">
+<section id="scrolly-secion-two">
   <div class="scrolly">
     <!-- Sticky graphic (progress bar) -->
     <figure class="sticky">
@@ -77,17 +104,24 @@
     background-color: #f8f9fa;
   }
 
-  /* Styling for sticky element */
-  #scrolly-overlay {
+  /* Styling for sticky section */
+  .scrolly-section {
     position: relative;
-    padding: 2rem 0;
+    padding: 0;
   }
 
+  #scrolly-secion-two {
+    position: relative;
+    padding: 0;
+  }
+
+  /* All section content */
   .scrolly {
     position: relative;
     margin: 0 auto;
   }
 
+  /* Sticky background */
   .sticky {
     position: -webkit-sticky;
     position: sticky;
@@ -127,7 +161,7 @@
     color: black;
     border-radius: 10px;
     border: 1px solid #dee2e6;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   /* Add when active */
