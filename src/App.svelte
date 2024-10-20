@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
 
+
   // Variable to store the active step index
   let activeIndex = 0;
 
@@ -111,8 +112,8 @@
     <!-- Sticky graphic -->
     <figure class="sticky">
       <div class="sticky-background-two">
-        {#if activeIndex === 4 || activeIndex === 3}
-          <div style="display: flex; justify-content: space-between; width: 60%;" transition:fade>
+        {#if activeIndex === 3 || activeIndex === 4}
+          <div style="display: flex; justify-content: space-between; align-items: center; width: 60%;">
             <img src="duck.png" alt="gul plastand" class="static-duck big" style="z-index: 2;" />
             <img src="duck.png" alt="gul plastand" class="static-duck big mirror-horizontal" style="z-index: 2;" />
             <img
@@ -130,9 +131,9 @@
               style="width: 100%; height: 3rem; position:relative; display: flex; justify-content: center; align-items: flex-end; gap: 1rem;"
             >
               {#if activeIndex === 6 || activeIndex === 7}
-                <img src="duck.png" alt="gul plastand" class="static-duck big"  />
-                <img src="duck.png" alt="gul plastand" class="static-duck" />
-                <img src="duck.png" alt="gul plastand" class="static-duck"  />
+                <img src="duck.png" alt="gul plastand" class="static-duck" style="width: 5rem" transition:fade />
+                <img src="duck.png" alt="gul plastand" class="static-duck" style="width: 4rem" transition:fade/>
+                <img src="duck.png" alt="gul plastand" class="static-duck" style="width: 3rem" transition:fade />
               {/if}
             </div>
             <div style="height: 50vh; width: 100%;">
@@ -249,7 +250,7 @@
     background: linear-gradient(
       180deg,
       rgba(251, 227, 67, 1) 0%,
-      rgba(254, 185, 2, 1) 33%,
+      rgba(254, 185, 2, 1) 30%,
       rgba(227, 119, 95, 1) 60%,
       rgba(122, 66, 135, 1) 90%
     );
@@ -414,7 +415,7 @@
   }
 
   .static-duck.big {
-    width: 5rem;
+    width: calc(100% / 4);
   }
 
   .static-duck.mirror-horizontal {
