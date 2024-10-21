@@ -49,7 +49,7 @@
           <br />
           <span style="font-size: 1.5rem; line-height: 1.6;">til å møtes</span>
         </h1>
-        <p style="font-size: 1.2rem; margin-top: 5rem;">En scollehistorie av Jon Olav</p>
+        <p style="font-size: 1.2rem; margin-top: 5rem;">En scrollehistorie av Jon Olav</p>
         <img src="arrow-down.svg" alt="" class="arrow" />
       </div>
     </div>
