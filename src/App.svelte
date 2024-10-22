@@ -147,7 +147,7 @@
     </figure>
 
     <!-- Step text -->
-    <article>
+    <article style="margin-top: -50vh;">
       <div class="step center-content" data-index="4">
         <div class="textbox">
           <p>Men en and i enden er tross alt bedre enn ti ender på taket</p>
