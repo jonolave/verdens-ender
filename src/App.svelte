@@ -2,7 +2,6 @@
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
 
-
   // Variable to store the active step index
   let activeIndex = 0;
 
@@ -132,7 +131,7 @@
             >
               {#if activeIndex === 6 || activeIndex === 7}
                 <img src="duck.png" alt="gul plastand" class="static-duck" style="width: 5rem" transition:fade />
-                <img src="duck.png" alt="gul plastand" class="static-duck" style="width: 4rem" transition:fade/>
+                <img src="duck.png" alt="gul plastand" class="static-duck" style="width: 4rem" transition:fade />
                 <img src="duck.png" alt="gul plastand" class="static-duck" style="width: 3rem" transition:fade />
               {/if}
             </div>
@@ -293,7 +292,7 @@
       transform: translateY(0);
     }
   }
-
+ 
   .crossing-duck {
     position: absolute;
     right: -5rem;
@@ -413,7 +412,7 @@
     height: auto;
     animation: duck-waggle 1s ease-in-out 0s infinite alternate-reverse;
   }
-
+ 
   .static-duck.big {
     width: calc(100% / 4);
   }
@@ -480,4 +479,19 @@
       left: 80%;
     }
   }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .arrow, .static-duck, .static-duck.mirror-horizontal {
+      animation: none;
+    }
+    .crossing-duck {
+      right: 35%;
+      animation: none;
+    }
+    .crossing-duck.second-duck  {
+      right: 55%;
+    }
+  }
+
 </style>
